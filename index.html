@@ -4,383 +4,71 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tandee</title>
-
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#07111f">
+<meta name="mobile-web-app-capable" content="yes">
 <style>
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#030711;
-  color:white;
-}
-
-.app{
-  max-width:500px;
-  margin:0 auto;
-  min-height:100vh;
-  padding:16px 16px 90px;
-  background:linear-gradient(180deg,#0b1d34,#030711);
-}
-
-.header{
-  text-align:center;
-  padding:14px 0;
-}
-
-.logo{
-  font-size:34px;
-  font-weight:900;
-  color:#f6c04d;
-}
-
-.tagline{
-  font-size:14px;
-  color:#b9c6d6;
-  margin-top:6px;
-}
-
-.card{
-  background:rgba(255,255,255,.075);
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:22px;
-  padding:16px;
-  margin-bottom:14px;
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
-}
-
-.hero{
-  font-size:22px;
-  font-weight:800;
-  line-height:1.2;
-  margin-bottom:8px;
-}
-
-.sub{
-  color:#b9c6d6;
-  font-size:14px;
-  line-height:1.45;
-}
-
-label{
-  font-size:13px;
-  color:#cfd8e3;
-  display:block;
-  margin-bottom:8px;
-}
-
-input,textarea{
-  width:100%;
-  border:0;
-  border-radius:15px;
-  padding:14px;
-  font-size:15px;
-  outline:none;
-}
-
-textarea{
-  min-height:120px;
-  resize:vertical;
-}
-
-.modes{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:12px;
-}
-
-.mode{
-  border:1px solid rgba(255,255,255,.16);
-  background:rgba(255,255,255,.09);
-  color:white;
-  padding:13px;
-  border-radius:15px;
-  text-align:center;
-  cursor:pointer;
-}
-
-.mode.active{
-  background:#f6c04d;
-  color:#07111f;
-  font-weight:bold;
-}
-
-button{
-  width:100%;
-  border:0;
-  border-radius:16px;
-  padding:15px;
-  margin-top:14px;
-  background:#f6c04d;
-  color:#07111f;
-  font-weight:bold;
-  font-size:16px;
-  cursor:pointer;
-}
-
-.section-title{
-  color:#f6c04d;
-  font-weight:bold;
-  font-size:17px;
-  margin-bottom:8px;
-}
-
-.pills{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:10px;
-}
-
-.pill{
-  background:rgba(246,192,77,.16);
-  border:1px solid rgba(246,192,77,.35);
-  color:#f7d88a;
-  padding:8px 10px;
-  border-radius:999px;
-  font-size:13px;
-}
-
-.anticipate{
-  background:rgba(246,192,77,.09);
-  border:1px solid rgba(246,192,77,.25);
-  border-radius:16px;
-  padding:12px;
-  margin:10px 0;
-  line-height:1.45;
-  font-size:14px;
-}
-
-.item{
-  padding:10px 0;
-  border-bottom:1px solid rgba(255,255,255,.1);
-  line-height:1.45;
-  font-size:14px;
-}
-
-.item:last-child{
-  border-bottom:0;
-}
-
-.loading{
-  color:#f6c04d;
-  font-size:14px;
-  padding:10px 0;
-}
-
-.error{
-  color:#ffb4b4;
-  font-size:14px;
-  line-height:1.45;
-}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#030711;color:white}.app{max-width:500px;margin:0 auto;min-height:100vh;padding:16px 16px 90px;background:linear-gradient(180deg,#0b1d34,#030711)}.header{text-align:center;padding:14px 0}.logo{font-size:34px;font-weight:900;color:#f6c04d}.tagline{font-size:14px;color:#b9c6d6;margin-top:6px}.card{background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.13);border-radius:22px;padding:16px;margin-bottom:14px;box-shadow:0 12px 30px rgba(0,0,0,.25)}.hero{font-size:22px;font-weight:800;line-height:1.2;margin-bottom:8px}.sub{color:#b9c6d6;font-size:14px;line-height:1.45}label{font-size:13px;color:#cfd8e3;display:block;margin-bottom:8px}input,textarea{width:100%;border:0;border-radius:15px;padding:14px;font-size:15px;outline:none}textarea{min-height:120px;resize:vertical}.modes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}.mode{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.09);color:white;padding:13px;border-radius:15px;text-align:center;cursor:pointer}.mode.active{background:#f6c04d;color:#07111f;font-weight:bold}button{width:100%;border:0;border-radius:16px;padding:15px;margin-top:14px;background:#f6c04d;color:#07111f;font-weight:bold;font-size:16px;cursor:pointer}.secondary{background:rgba(255,255,255,.12);color:white}.section-title{color:#f6c04d;font-weight:bold;font-size:17px;margin-bottom:8px}.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.pill{background:rgba(246,192,77,.16);border:1px solid rgba(246,192,77,.35);color:#f7d88a;padding:8px 10px;border-radius:999px;font-size:13px}.anticipate{background:rgba(246,192,77,.09);border:1px solid rgba(246,192,77,.25);border-radius:16px;padding:12px;margin:10px 0;line-height:1.45;font-size:14px}.item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);line-height:1.45;font-size:14px}.loading{color:#f6c04d;font-size:14px;padding:10px 0}.error{color:#ffb4b4;font-size:14px;line-height:1.45;white-space:pre-wrap}.shared-badge{display:none;background:rgba(158,230,176,.12);border:1px solid rgba(158,230,176,.35);color:#9ee6b0;border-radius:14px;padding:10px;margin-bottom:14px;font-size:14px}.small{font-size:12px;color:#9eb0c5;line-height:1.4}
 </style>
 </head>
-
 <body>
 <div class="app">
-
-  <div class="header">
-    <div class="logo">Tandee</div>
-    <div class="tagline">AI-centered mobile interaction</div>
-  </div>
-
-  <div class="card">
-    <div class="hero">Tandee anticipates what humans probably need next.</div>
-    <div class="sub">
-      Tandee focuses on situations, timing, friction, logistics, and next moves.
-    </div>
-  </div>
-
-  <div class="card">
-    <label>Choose Tandee layer</label>
-
-    <div class="modes">
-      <div class="mode active" onclick="setMode('General',this)">General</div>
-      <div class="mode" onclick="setMode('Scout',this)">Scout</div>
-      <div class="mode" onclick="setMode('Lens',this)">Lens</div>
-      <div class="mode" onclick="setMode('Learn',this)">Learn</div>
-    </div>
-
-    <br>
-
-    <label>What are you doing?</label>
-    <input id="context" placeholder="Example: Flying from rural PA for a 6am flight">
-
-    <br><br>
-
-    <label>Extra notes</label>
-    <textarea id="notes" placeholder="Example: Need parking, worried Uber may not exist, traveling with parents..."></textarea>
-
-    <button onclick="runTandee()">Start Tandee</button>
-  </div>
-
-  <div class="card">
-    <div class="section-title">Situation</div>
-    <div id="summary">No active session.</div>
-    <div id="pills" class="pills"></div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">Tandee Anticipates</div>
-    <div id="anticipates"></div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">What Matters</div>
-    <div id="points"></div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">Suggested Next Moves</div>
-    <div id="actions"></div>
-  </div>
-
+<div class="header"><div class="logo">Tandee</div><div class="tagline">AI-centered mobile interaction</div></div>
+<div id="sharedBadge" class="shared-badge">Shared into Tandee. Building a session from this mobile context.</div>
+<div class="card"><div class="hero">Share a page. Tandee builds the session.</div><div class="sub">From Chrome, YouTube, articles, travel pages, product pages, or research pages: tap Share → Tandee.</div></div>
+<div class="card">
+<label>Choose Tandee layer</label>
+<div class="modes">
+<div class="mode active" onclick="setMode('General',this)">General</div>
+<div class="mode" onclick="setMode('Scout',this)">Scout</div>
+<div class="mode" onclick="setMode('Lens',this)">Lens</div>
+<div class="mode" onclick="setMode('Learn',this)">Learn</div>
+</div><br>
+<label>Situation / shared page</label><input id="context" placeholder="Example: Flying from rural PA for a 6am flight"><br><br>
+<label>Extra notes</label><textarea id="notes" placeholder="Example: Need parking, worried Uber may not exist, traveling with parents..."></textarea>
+<button onclick="runTandee()">Start Tandee</button>
+<button class="secondary" onclick="installHint()">Install / Share Setup</button>
+<div class="small" id="installText" style="display:none;margin-top:10px;">Android Chrome: open this site, tap browser menu, choose “Add to Home screen” or “Install app.” After install, try sharing a Chrome page to Tandee.</div>
 </div>
-
+<div class="card"><div class="section-title">Situation</div><div id="summary">No active session.</div><div id="pills" class="pills"></div></div>
+<div class="card"><div class="section-title">Tandee Noticed</div><div id="anticipates"></div></div>
+<div class="card"><div class="section-title">Need to Know</div><div id="points"></div></div>
+<div class="card"><div class="section-title">Best Next Moves</div><div id="actions"></div></div>
+</div>
 <script>
 const TANDEE_FUNCTION_URL = "https://pdhxtpgtzxjkgwabgybb.supabase.co/functions/v1/tandee-ai";
-
 let currentMode = "General";
-
-function setMode(mode, element){
-  currentMode = mode;
-  document.querySelectorAll(".mode").forEach(m => m.classList.remove("active"));
-  element.classList.add("active");
-}
-
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("service-worker.js").catch(console.error);
+function installHint(){const el=document.getElementById("installText");el.style.display=el.style.display==="none"?"block":"none";}
+function setMode(mode,element){currentMode=mode;document.querySelectorAll(".mode").forEach(m=>m.classList.remove("active"));element.classList.add("active");}
+function readSharedParams(){const p=new URLSearchParams(window.location.search);const title=p.get("title")||"";const text=p.get("text")||"";const url=p.get("url")||"";if(title||text||url){document.getElementById("sharedBadge").style.display="block";document.getElementById("context").value=[title,url].filter(Boolean).join(" | ");if(text)document.getElementById("notes").value=text;setTimeout(()=>runTandee(),500);}}
 async function runTandee(){
-
-  const context = document.getElementById("context").value.trim();
-  const notes = document.getElementById("notes").value.trim();
-
-  document.getElementById("summary").innerHTML = '<div class="loading">Tandee is thinking through the situation...</div>';
-  document.getElementById("pills").innerHTML = "";
-  document.getElementById("anticipates").innerHTML = "";
-  document.getElementById("points").innerHTML = "";
-  document.getElementById("actions").innerHTML = "";
-
-  const prompt = `
-You are Tandee.
-
-You are an AI-centered mobile interaction assistant.
-
-Your job is NOT to give generic summaries.
-Your job is to anticipate what a human probably needs next.
-
-Think about:
-- the user's actual situation
-- timing
-- stress
-- logistics
-- hidden friction
-- rural vs urban realities
-- cost
-- reliability
-- safety
-- practical next steps
-- what the user may not know to ask yet
+const context=document.getElementById("context").value.trim();const notes=document.getElementById("notes").value.trim();
+document.getElementById("summary").innerHTML='<div class="loading">Tandee is thinking through the situation...</div>';document.getElementById("pills").innerHTML="";document.getElementById("anticipates").innerHTML="";document.getElementById("points").innerHTML="";document.getElementById("actions").innerHTML="";
+const prompt = `You are Tandee. You are not a search engine. You are a mobile AI interaction layer. Turn a shared page, link, or situation into a practical operating view. Think about goal, hidden friction, missing info, timing, cost, risk, rural vs urban realities, and next best move.
 
 Current Tandee layer: ${currentMode}
+Shared situation or page: ${context}
+Extra notes: ${notes}
 
-Situation:
-${context}
-
-Extra notes:
-${notes}
-
-Return ONLY valid JSON in this exact format:
-
-{
-  "summary":"short situation summary",
-  "pills":["pill","pill","pill","pill"],
-  "anticipates":[
-    "anticipation 1",
-    "anticipation 2",
-    "anticipation 3",
-    "anticipation 4"
-  ],
-  "points":[
-    "important point 1",
-    "important point 2",
-    "important point 3"
-  ],
-  "actions":[
-    "action 1",
-    "action 2",
-    "action 3"
-  ]
+Return ONLY valid JSON:
+{"summary":"short situation summary","pills":["pill","pill","pill","pill"],"anticipates":["what Tandee noticed 1","what Tandee noticed 2","what Tandee noticed 3","what Tandee noticed 4"],"points":["need-to-know point 1","need-to-know point 2","need-to-know point 3"],"actions":["best next move 1","best next move 2","best next move 3"]}`;
+try{
+const response=await fetch(TANDEE_FUNCTION_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt})});
+const rawText=await response.text();let data;try{data=JSON.parse(rawText)}catch(e){throw new Error("Supabase returned non-JSON response:\n\n"+rawText)}
+if(!response.ok)throw new Error("HTTP "+response.status+":\n"+pretty(data)); if(data.error)throw new Error("Supabase/OpenAI error:\n"+pretty(data.error));
+const message=data.choices?.[0]?.message?.content;if(!message)throw new Error("No AI message returned. Full response:\n"+pretty(data));
+const cleaned=String(message).replace(/```json/g,"").replace(/```/g,"").trim();let parsed;try{parsed=JSON.parse(cleaned)}catch(e){throw new Error("AI returned text, but not valid JSON:\n\n"+cleaned)}
+document.getElementById("summary").innerText=parsed.summary||"No summary returned.";
+document.getElementById("pills").innerHTML=(parsed.pills||[]).map(p=>`<div class="pill">${escapeHtml(p)}</div>`).join("");
+document.getElementById("anticipates").innerHTML=(parsed.anticipates||[]).map(a=>`<div class="anticipate">${escapeHtml(a)}</div>`).join("");
+document.getElementById("points").innerHTML=(parsed.points||[]).map(p=>`<div class="item">${escapeHtml(p)}</div>`).join("");
+document.getElementById("actions").innerHTML=(parsed.actions||[]).map(a=>`<div class="item">${escapeHtml(a)}</div>`).join("");
+}catch(error){document.getElementById("summary").innerHTML=`<div class="error">Tandee could not generate a response.\n\n${escapeHtml(error.message||String(error))}</div>`;document.getElementById("anticipates").innerHTML=`<div class="anticipate">The Tandee page loaded, but the AI relay returned an error.</div>`;}
 }
-`;
-
-  try {
-
-    const response = await fetch(TANDEE_FUNCTION_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        prompt: prompt
-      })
-    });
-
-    const data = await response.json();
-
-    console.log("Supabase function response:", data);
-
-    if (data.error) {
-  throw new Error(JSON.stringify(data.error));
-}
-
-    const message = data.choices?.[0]?.message?.content;
-
-    if (!message) {
-      throw new Error("No AI message returned. Check Supabase function and OpenAI secret.");
-    }
-
-    const cleaned = message
-      .replace(/```json/g, "")
-      .replace(/```/g, "")
-      .trim();
-
-    const parsed = JSON.parse(cleaned);
-
-    document.getElementById("summary").innerText = parsed.summary || "No summary returned.";
-
-    document.getElementById("pills").innerHTML =
-      (parsed.pills || []).map(p => `<div class="pill">${escapeHtml(p)}</div>`).join("");
-
-    document.getElementById("anticipates").innerHTML =
-      (parsed.anticipates || []).map(a => `
-        <div class="anticipate">${escapeHtml(a)}</div>
-      `).join("");
-
-    document.getElementById("points").innerHTML =
-      (parsed.points || []).map(p => `<div class="item">${escapeHtml(p)}</div>`).join("");
-
-    document.getElementById("actions").innerHTML =
-      (parsed.actions || []).map(a => `<div class="item">${escapeHtml(a)}</div>`).join("");
-
-  } catch(error) {
-
-    document.getElementById("summary").innerHTML =
-      `<div class="error">Tandee could not generate a response.<br><br>${escapeHtml(error.message)}</div>`;
-
-    document.getElementById("anticipates").innerHTML =
-      `<div class="anticipate">Check that your Supabase Edge Function is deployed and your OPENAI_API_KEY secret is saved.</div>`;
-  }
-}
-
-function escapeHtml(text){
-  return String(text)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
+function pretty(v){try{return JSON.stringify(v,null,2)}catch(e){return String(v)}}
+function escapeHtml(t){return String(t).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+readSharedParams();
 </script>
-
 </body>
 </html>

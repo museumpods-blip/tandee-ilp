@@ -330,8 +330,8 @@ Return ONLY valid JSON in this exact format:
     console.log("Supabase function response:", data);
 
     if (data.error) {
-      throw new Error(data.error);
-    }
+  throw new Error(JSON.stringify(data.error));
+}
 
     const message = data.choices?.[0]?.message?.content;
 

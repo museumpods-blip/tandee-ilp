@@ -1,171 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tandee Layer Prototype</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tandee Layer</title>
 
 <style>
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #07111f;
-    color: #ffffff;
-  }
-
-  .app {
-    max-width: 480px;
-    margin: 0 auto;
-    min-height: 100vh;
-    background: linear-gradient(180deg, #09182b, #03070d);
-    padding: 16px;
-  }
-
-  .header {
-    text-align: center;
-    padding: 14px 0 18px;
-  }
-
-  .logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #f6c04d;
-  }
-
-  .tagline {
-    font-size: 14px;
-    color: #b9c6d6;
-    margin-top: 6px;
-  }
-
-  .card {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 20px;
-    padding: 16px;
-    margin-bottom: 14px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.25);
-  }
-
-  label {
-    font-size: 13px;
-    color: #cfd8e3;
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  input, textarea, select {
-    width: 100%;
-    border: none;
-    border-radius: 14px;
-    padding: 13px;
-    font-size: 15px;
-    background: #ffffff;
-    color: #111;
-    outline: none;
-  }
-
-  textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-
-  .modes {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 12px;
-  }
-
-  .mode {
-    padding: 13px;
-    border-radius: 14px;
-    border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.08);
-    color: #fff;
-    font-size: 14px;
-    cursor: pointer;
-  }
-
-  .mode.active {
-    background: #f6c04d;
-    color: #07111f;
-    font-weight: bold;
-  }
-
-  button {
-    width: 100%;
-    border: none;
-    border-radius: 16px;
-    padding: 15px;
-    margin-top: 14px;
-    background: #f6c04d;
-    color: #07111f;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-  }
-
-  button.secondary {
-    background: rgba(255,255,255,0.12);
-    color: #fff;
-  }
-
-  .output {
-    display: none;
-  }
-
-  .section-title {
-    color: #f6c04d;
-    font-size: 17px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-
-  .pill-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-  }
-
-  .pill {
-    background: rgba(246,192,77,0.16);
-    border: 1px solid rgba(246,192,77,0.35);
-    color: #f7d88a;
-    padding: 8px 10px;
-    border-radius: 999px;
-    font-size: 13px;
-  }
-
-  .item {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    font-size: 14px;
-    line-height: 1.45;
-  }
-
-  .item:last-child {
-    border-bottom: none;
-  }
-
-  .footer-note {
-    font-size: 12px;
-    color: #8fa1b7;
-    text-align: center;
-    padding: 18px 8px;
-  }
-
-  .saved {
-    font-size: 13px;
-    color: #9ee6b0;
-    margin-top: 10px;
-    display: none;
-  }
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#030711;
+  color:white;
+}
+.app{
+  max-width:500px;
+  margin:0 auto;
+  min-height:100vh;
+  padding:16px 16px 90px;
+  background:linear-gradient(180deg,#0b1d34,#030711);
+}
+.header{text-align:center;padding:14px 0}
+.logo{font-size:30px;font-weight:800;color:#f6c04d}
+.tagline{font-size:14px;color:#b9c6d6;margin-top:6px}
+.card{
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:22px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+label{font-size:13px;color:#cfd8e3;display:block;margin-bottom:8px}
+input,textarea{
+  width:100%;
+  border:0;
+  border-radius:15px;
+  padding:14px;
+  font-size:15px;
+  outline:none;
+}
+textarea{min-height:115px;resize:vertical}
+.modes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.mode{
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.09);
+  color:white;
+  padding:13px;
+  border-radius:15px;
+  text-align:center;
+  cursor:pointer;
+}
+.mode.active{background:#f6c04d;color:#07111f;font-weight:bold}
+button{
+  width:100%;
+  border:0;
+  border-radius:16px;
+  padding:15px;
+  margin-top:14px;
+  background:#f6c04d;
+  color:#07111f;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+}
+.secondary{background:rgba(255,255,255,.12);color:white}
+.section-title{color:#f6c04d;font-weight:bold;font-size:17px;margin-bottom:8px}
+.item{
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  line-height:1.45;
+  font-size:14px;
+}
+.item:last-child{border-bottom:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pill{
+  background:rgba(246,192,77,.16);
+  border:1px solid rgba(246,192,77,.35);
+  color:#f7d88a;
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:13px;
+}
+.view{display:none}
+.view.active{display:block}
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  max-width:500px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  background:#06101d;
+  border-top:1px solid rgba(255,255,255,.14);
+}
+.navbtn{
+  padding:12px 4px;
+  text-align:center;
+  font-size:12px;
+  color:#9eb0c5;
+  cursor:pointer;
+}
+.navbtn.active{color:#f6c04d;font-weight:bold}
+.saved-msg{display:none;color:#9ee6b0;font-size:13px;margin-top:10px}
+.empty{color:#9eb0c5;font-size:14px;padding:12px 0}
+.hero{
+  font-size:22px;
+  font-weight:800;
+  line-height:1.2;
+  margin-bottom:8px;
+}
+.sub{color:#b9c6d6;font-size:14px;line-height:1.45}
 </style>
 </head>
 
@@ -174,34 +121,43 @@
 
   <div class="header">
     <div class="logo">Tandee Layer</div>
-    <div class="tagline">An immersive AI-assisted mobile experience</div>
+    <div class="tagline">Mobile interaction reorganized around intent</div>
   </div>
 
-  <div class="card">
-    <label>Paste a URL or describe what you are looking at</label>
-    <input id="urlInput" placeholder="Example: YouTube video, article, recruit page, local business..." />
-
-    <br><br>
-
-    <label>Optional page notes or copied text</label>
-    <textarea id="contentInput" placeholder="Paste text here, or describe the page..."></textarea>
-
-    <div class="modes">
-      <div class="mode active" onclick="setMode('General', this)">General</div>
-      <div class="mode" onclick="setMode('Scout', this)">Scout</div>
-      <div class="mode" onclick="setMode('Lens', this)">Lens</div>
-      <div class="mode" onclick="setMode('Local', this)">Local</div>
+  <div id="homeView" class="view active">
+    <div class="card">
+      <div class="hero">Open the web. Tandee builds the layer.</div>
+      <div class="sub">
+        Paste a link, describe a page, or later share directly from your phone.
+        Tandee turns passive browsing into an active mobile workspace.
+      </div>
     </div>
 
-    <button onclick="analyze()">Generate Tandee Layer</button>
+    <div class="card">
+      <label>URL or page context</label>
+      <input id="urlInput" placeholder="Paste URL or describe the page">
+
+      <br><br>
+
+      <label>Optional notes or copied content</label>
+      <textarea id="contentInput" placeholder="Paste text or describe what you are looking at"></textarea>
+
+      <div class="modes">
+        <div class="mode active" onclick="setMode('General',this)">General</div>
+        <div class="mode" onclick="setMode('Scout',this)">Scout</div>
+        <div class="mode" onclick="setMode('Lens',this)">Lens</div>
+        <div class="mode" onclick="setMode('Local',this)">Local</div>
+      </div>
+
+      <button onclick="generateLayer()">Generate Layer</button>
+    </div>
   </div>
 
-  <div id="output" class="output">
-
+  <div id="workspaceView" class="view">
     <div class="card">
       <div class="section-title">Context Snapshot</div>
-      <div id="summary" class="item"></div>
-      <div class="pill-row" id="pills"></div>
+      <div id="summary" class="item">No workspace yet.</div>
+      <div id="pills" class="pills"></div>
     </div>
 
     <div class="card">
@@ -213,143 +169,204 @@
       <div class="section-title">Suggested Actions</div>
       <div id="actions"></div>
       <button class="secondary" onclick="saveWorkspace()">Save Workspace</button>
-      <div id="savedMsg" class="saved">Workspace saved on this device.</div>
+      <div id="savedMsg" class="saved-msg">Workspace saved.</div>
     </div>
-
-    <div class="card">
-      <div class="section-title">Ask Tandee</div>
-      <input id="askInput" placeholder="Ask a question about this page..." />
-      <button onclick="askTandee()">Ask</button>
-      <div id="answer" class="item" style="margin-top:12px;"></div>
-    </div>
-
   </div>
 
-  <div class="footer-note">
-    Prototype only. No data leaves this device yet.
+  <div id="askView" class="view">
+    <div class="card">
+      <div class="section-title">Ask Tandee</div>
+      <input id="askInput" placeholder="Ask about this workspace">
+      <button onclick="askTandee()">Ask</button>
+      <div id="answer" class="item" style="margin-top:12px;">Ask a question after generating a layer.</div>
+    </div>
+  </div>
+
+  <div id="savedView" class="view">
+    <div class="card">
+      <div class="section-title">Saved Workspaces</div>
+      <div id="savedList" class="empty">No saved workspaces yet.</div>
+      <button class="secondary" onclick="clearSaved()">Clear Saved</button>
+    </div>
   </div>
 
 </div>
 
+<div class="bottom-nav">
+  <div class="navbtn active" onclick="showView('homeView',this)">Home</div>
+  <div class="navbtn" onclick="showView('workspaceView',this)">Layer</div>
+  <div class="navbtn" onclick="showView('askView',this)">Ask</div>
+  <div class="navbtn" onclick="showView('savedView',this)">Saved</div>
+</div>
+
 <script>
-let currentMode = "General";
+let currentMode="General";
+let currentWorkspace=null;
 
-function setMode(mode, element) {
-  currentMode = mode;
-  document.querySelectorAll(".mode").forEach(btn => btn.classList.remove("active"));
-  element.classList.add("active");
+function showView(id,el){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.querySelectorAll(".navbtn").forEach(n=>n.classList.remove("active"));
+  el.classList.add("active");
+  if(id==="savedView") renderSaved();
 }
 
-function analyze() {
-  const url = document.getElementById("urlInput").value.trim();
-  const content = document.getElementById("contentInput").value.trim();
-
-  const source = url || content || "an unknown mobile page";
-
-  document.getElementById("output").style.display = "block";
-  document.getElementById("savedMsg").style.display = "none";
-
-  let summary = "";
-  let pills = [];
-  let keyPoints = [];
-  let actions = [];
-
-  if (currentMode === "Scout") {
-    summary = "Tandee is treating this as a sports intelligence page and building a mobile scout workspace around it.";
-    pills = ["Player context", "Strengths", "Risk", "Fit", "Comparison"];
-    keyPoints = [
-      "Identify the athlete, team, position, class year, and available statistics.",
-      "Separate actual evidence from hype, rankings, and promotional language.",
-      "Look for upside, readiness, athletic profile, and possible development risk."
-    ];
-    actions = [
-      "Build a scout brief.",
-      "Compare this player to another saved prospect.",
-      "Save to My Scout Board.",
-      "Generate a short recruiting article."
-    ];
-  }
-
-  else if (currentMode === "Lens") {
-    summary = "Tandee is treating this as investigative media and converting it into a structured case-analysis workspace.";
-    pills = ["Timeline", "Anomalies", "People", "Evidence", "Questions"];
-    keyPoints = [
-      "Pull out the central claim or event being discussed.",
-      "Identify names, places, dates, contradictions, and unusual details.",
-      "Separate confirmed facts from speculation or commentary."
-    ];
-    actions = [
-      "Build a case timeline.",
-      "List key anomalies.",
-      "Create a next-episode deep dive angle.",
-      "Save this to an investigation thread."
-    ];
-  }
-
-  else if (currentMode === "Local") {
-    summary = "Tandee is treating this as a local discovery or mobile decision page.";
-    pills = ["Nearby", "Directions", "Offer", "Event", "Share"];
-    keyPoints = [
-      "Determine whether this page is about a business, event, destination, or offer.",
-      "Extract location, hours, cost, contact info, and next useful step.",
-      "Turn the page into a simple mobile action flow."
-    ];
-    actions = [
-      "Create a visitor card.",
-      "Generate a QR-friendly promo.",
-      "Open directions.",
-      "Draft a local social post."
-    ];
-  }
-
-  else {
-    summary = "Tandee is reading this as a general web page and turning it into a mobile action layer.";
-    pills = ["Summary", "Intent", "Actions", "Notes", "Next step"];
-    keyPoints = [
-      "Understand what this page is mainly about.",
-      "Identify what the user is probably trying to do next.",
-      "Convert passive browsing into an active workspace."
-    ];
-    actions = [
-      "Summarize the page.",
-      "Extract important details.",
-      "Create notes.",
-      "Recommend next actions."
-    ];
-  }
-
-  document.getElementById("summary").innerText = summary + "\n\nSource: " + source;
-
-  document.getElementById("pills").innerHTML = pills.map(p => `<div class="pill">${p}</div>`).join("");
-
-  document.getElementById("keyPoints").innerHTML = keyPoints.map(p => `<div class="item">${p}</div>`).join("");
-
-  document.getElementById("actions").innerHTML = actions.map(a => `<div class="item">${a}</div>`).join("");
+function setMode(mode,el){
+  currentMode=mode;
+  document.querySelectorAll(".mode").forEach(m=>m.classList.remove("active"));
+  el.classList.add("active");
 }
 
-function askTandee() {
-  const question = document.getElementById("askInput").value.trim();
+function generateLayer(){
+  const url=document.getElementById("urlInput").value.trim();
+  const content=document.getElementById("contentInput").value.trim();
+  const source=url||content||"Untitled mobile context";
 
-  if (!question) {
-    document.getElementById("answer").innerText = "Ask me what you want to do with this page.";
-    return;
-  }
-
-  document.getElementById("answer").innerText =
-    "Prototype answer: Tandee would use the current page, selected mode, saved context, and your question to generate a focused response. Current mode: " + currentMode + ".";
-}
-
-function saveWorkspace() {
-  const workspace = {
-    mode: currentMode,
-    url: document.getElementById("urlInput").value,
-    content: document.getElementById("contentInput").value,
-    savedAt: new Date().toISOString()
+  let data={
+    General:{
+      summary:"Tandee is reading this as a general web context and converting it into an action layer.",
+      pills:["Intent","Summary","Actions","Notes","Next step"],
+      points:[
+        "Identify what the page is mainly about.",
+        "Determine what the user is probably trying to do next.",
+        "Turn passive browsing into an active mobile workspace."
+      ],
+      actions:[
+        "Summarize the page.",
+        "Extract important details.",
+        "Create useful notes.",
+        "Recommend the next action."
+      ]
+    },
+    Scout:{
+      summary:"Tandee is treating this as a sports intelligence context.",
+      pills:["Player","Stats","Fit","Risk","Board"],
+      points:[
+        "Identify athlete, position, school, class year, and available stats.",
+        "Separate evidence from hype.",
+        "Look for upside, readiness, hidden value, and development risk."
+      ],
+      actions:[
+        "Build a scout brief.",
+        "Save to My Scout Board.",
+        "Compare against another prospect.",
+        "Generate a recruiting article."
+      ]
+    },
+    Lens:{
+      summary:"Tandee is treating this as investigative media or case material.",
+      pills:["Timeline","People","Evidence","Anomalies","Questions"],
+      points:[
+        "Identify names, places, dates, and claims.",
+        "Separate facts from speculation.",
+        "Find contradictions, missing pieces, and key anomalies."
+      ],
+      actions:[
+        "Build a timeline.",
+        "List anomalies.",
+        "Create a deep-dive angle.",
+        "Save to an investigation thread."
+      ]
+    },
+    Local:{
+      summary:"Tandee is treating this as local discovery or a mobile decision moment.",
+      pills:["Nearby","Hours","Directions","Offer","Share"],
+      points:[
+        "Identify business, place, event, or offer.",
+        "Extract location, hours, contact info, and next step.",
+        "Convert the page into a simple mobile action flow."
+      ],
+      actions:[
+        "Create a visitor card.",
+        "Open directions.",
+        "Draft a local promo.",
+        "Generate QR-friendly copy."
+      ]
+    }
   };
 
-  localStorage.setItem("tandee_workspace", JSON.stringify(workspace));
-  document.getElementById("savedMsg").style.display = "block";
+  const d=data[currentMode];
+
+  currentWorkspace={
+    mode:currentMode,
+    source,
+    summary:d.summary,
+    pills:d.pills,
+    points:d.points,
+    actions:d.actions,
+    created:new Date().toLocaleString()
+  };
+
+  renderWorkspace();
+  document.querySelectorAll(".navbtn")[1].click();
 }
+
+function renderWorkspace(){
+  if(!currentWorkspace)return;
+  document.getElementById("summary").innerText=currentWorkspace.summary+"\n\nSource: "+currentWorkspace.source;
+  document.getElementById("pills").innerHTML=currentWorkspace.pills.map(p=>`<div class="pill">${p}</div>`).join("");
+  document.getElementById("keyPoints").innerHTML=currentWorkspace.points.map(p=>`<div class="item">${p}</div>`).join("");
+  document.getElementById("actions").innerHTML=currentWorkspace.actions.map(a=>`<div class="item">${a}</div>`).join("");
+}
+
+function askTandee(){
+  const q=document.getElementById("askInput").value.trim();
+  if(!currentWorkspace){
+    document.getElementById("answer").innerText="Generate a layer first.";
+    return;
+  }
+  if(!q){
+    document.getElementById("answer").innerText="Ask what you want to do with this context.";
+    return;
+  }
+  document.getElementById("answer").innerText=
+    "Prototype response: In "+currentWorkspace.mode+" mode, Tandee would answer using the current source, saved session, and your intent. Question: "+q;
+}
+
+function saveWorkspace(){
+  if(!currentWorkspace)return;
+  let saved=JSON.parse(localStorage.getItem("tandee_saved")||"[]");
+  saved.unshift(currentWorkspace);
+  localStorage.setItem("tandee_saved",JSON.stringify(saved));
+  document.getElementById("savedMsg").style.display="block";
+}
+
+function renderSaved(){
+  let saved=JSON.parse(localStorage.getItem("tandee_saved")||"[]");
+  if(!saved.length){
+    document.getElementById("savedList").innerHTML='<div class="empty">No saved workspaces yet.</div>';
+    return;
+  }
+  document.getElementById("savedList").innerHTML=saved.map((w,i)=>`
+    <div class="item" onclick="loadSaved(${i})">
+      <strong>${w.mode} Layer</strong><br>
+      ${w.source}<br>
+      <span style="color:#9eb0c5">${w.created}</span>
+    </div>
+  `).join("");
+}
+
+function loadSaved(i){
+  let saved=JSON.parse(localStorage.getItem("tandee_saved")||"[]");
+  currentWorkspace=saved[i];
+  renderWorkspace();
+  document.querySelectorAll(".navbtn")[1].click();
+}
+
+function clearSaved(){
+  localStorage.removeItem("tandee_saved");
+  renderSaved();
+}
+
+function checkIncomingUrl(){
+  const params=new URLSearchParams(window.location.search);
+  const shared=params.get("url")||params.get("text")||params.get("share");
+  if(shared){
+    document.getElementById("urlInput").value=shared;
+  }
+}
+
+checkIncomingUrl();
 </script>
 
 </body>

@@ -38,6 +38,7 @@ button{width:100%;border:0;border-radius:16px;padding:15px;margin-top:14px;backg
 .anticipate{background:rgba(246,192,77,.09);border:1px solid rgba(246,192,77,.25);border-radius:16px;padding:12px;margin:10px 0}
 .anticipate strong{color:#f6c04d}
 .small{font-size:12px;color:#9eb0c5}
+.loading{color:#f6c04d;font-size:14px;padding:10px 0}
 </style>
 </head>
 
@@ -51,21 +52,20 @@ button{width:100%;border:0;border-radius:16px;padding:15px;margin-top:14px;backg
 
 <div id="homeView" class="view active">
   <div class="card">
-    <div class="hero">Tandee learns the situation, then anticipates the next need.</div>
+    <div class="hero">Tandee anticipates what humans probably need next.</div>
     <div class="sub">
-      Not cookies. Not ad stalking. Tandee watches the task pattern:
-      what you are trying to do, what might block you, and what you probably need next.
+      Tandee focuses on situations, friction, timing, stress, logistics, and next moves — not just keywords.
     </div>
   </div>
 
   <div class="card">
     <label>What are you doing?</label>
-    <input id="urlInput" placeholder="Example: flying from a small airport, watching a case video, studying a topic">
+    <input id="urlInput" placeholder="Example: flying from rural PA for a 6am flight">
 
     <br><br>
 
     <label>Context / notes</label>
-    <textarea id="contentInput" placeholder="Example: leaving from rural PA, early flight, need parking, shuttle, Uber options..."></textarea>
+    <textarea id="contentInput" placeholder="Example: need parking, shuttle, worried about Uber availability..."></textarea>
 
     <div class="modes">
       <div class="mode active" onclick="setMode('General',this)">General</div>
@@ -98,25 +98,6 @@ button{width:100%;border:0;border-radius:16px;padding:15px;margin-top:14px;backg
   <div class="card">
     <div class="section-title">Suggested Next Moves</div>
     <div id="actions"></div>
-    <button class="secondary" onclick="saveWorkspace()">Save Session</button>
-    <div id="savedMsg" class="saved-msg">Session saved.</div>
-  </div>
-</div>
-
-<div id="askView" class="view">
-  <div class="card">
-    <div class="section-title">Ask Tandee</div>
-    <input id="askInput" placeholder="Ask what you should consider next">
-    <button onclick="askTandee()">Ask</button>
-    <div id="answer" class="item" style="margin-top:12px;">Start a session first.</div>
-  </div>
-</div>
-
-<div id="savedView" class="view">
-  <div class="card">
-    <div class="section-title">Saved Sessions</div>
-    <div id="savedList" class="empty">No saved sessions yet.</div>
-    <button class="secondary" onclick="clearSaved()">Clear Saved</button>
   </div>
 </div>
 
@@ -125,11 +106,11 @@ button{width:100%;border:0;border-radius:16px;padding:15px;margin-top:14px;backg
 <div class="bottom-nav">
   <div class="navbtn active" onclick="showView('homeView',this)">Home</div>
   <div class="navbtn" onclick="showView('workspaceView',this)">Tandee</div>
-  <div class="navbtn" onclick="showView('askView',this)">Ask</div>
-  <div class="navbtn" onclick="showView('savedView',this)">Saved</div>
 </div>
 
 <script>
+const OPENAI_API_KEY = "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";
+
 let currentMode="General";
 let currentWorkspace=null;
 
@@ -138,7 +119,6 @@ function showView(id,el){
   document.getElementById(id).classList.add("active");
   document.querySelectorAll(".navbtn").forEach(n=>n.classList.remove("active"));
   el.classList.add("active");
-  if(id==="savedView") renderSaved();
 }
 
 function setMode(mode,el){
@@ -147,148 +127,114 @@ function setMode(mode,el){
   el.classList.add("active");
 }
 
-function generateLayer(){
-  const context=document.getElementById("urlInput").value.trim() || "Untitled task";
+async function generateLayer(){
+
+  const context=document.getElementById("urlInput").value.trim() || "Untitled situation";
   const notes=document.getElementById("contentInput").value.trim();
 
-  let lower=(context+" "+notes).toLowerCase();
-
-  let data=getModeData(currentMode);
-
-  if(lower.includes("airport") || lower.includes("flight") || lower.includes("uber") || lower.includes("shuttle") || lower.includes("parking")){
-    data={
-      summary:"Tandee recognizes this as a travel logistics situation, not just a search. The key issue is reliability under real-world conditions.",
-      pills:["Parking","Shuttle","Uber risk","Timing","Stress reduction"],
-      anticipates:[
-        "You probably need to know whether airport parking includes a shuttle or requires walking.",
-        "If this is rural America or an early/late flight, Uber may be unreliable or expensive.",
-        "A hotel park-and-fly option may reduce stress if the flight is very early.",
-        "You need a backup plan before you leave, not after you land."
-      ],
-      points:[
-        "Departure time matters because rural rideshare availability can collapse early morning or late night.",
-        "Parking may be more reliable than rideshare if the airport is small or far from a city.",
-        "The best answer depends on trip length, flight time, airport size, weather, and return time."
-      ],
-      actions:[
-        "Check official airport parking and shuttle details.",
-        "Compare long-term parking vs hotel park-and-fly.",
-        "Estimate Uber availability before relying on it.",
-        "Create a departure plan with backup timing."
-      ]
-    };
-  }
-
-  currentWorkspace={
-    mode:currentMode,
-    context,
-    notes,
-    summary:data.summary,
-    pills:data.pills,
-    anticipates:data.anticipates,
-    points:data.points,
-    actions:data.actions,
-    created:new Date().toLocaleString()
-  };
-
-  renderWorkspace();
   document.querySelectorAll(".navbtn")[1].click();
-}
 
-function getModeData(mode){
-  const all={
-    General:{
-      summary:"Tandee is reading this as a general human task and building an intent-centered session.",
-      pills:["Intent","Friction","Context","Next need"],
-      anticipates:[
-        "You may need the next practical step, not just information.",
-        "There may be hidden constraints around time, money, distance, or reliability.",
-        "The useful answer may depend on what happens after this step."
-      ],
-      points:[
-        "Identify what the human is trying to accomplish.",
-        "Notice what could create friction.",
-        "Convert the situation into practical next moves."
-      ],
-      actions:[
-        "Clarify the goal.",
-        "Identify constraints.",
-        "Suggest the next useful action."
-      ]
-    },
-    Scout:{
-      summary:"Tandee is reading this as a sports intelligence session.",
-      pills:["Player","Fit","Risk","Upside"],
-      anticipates:[
-        "You probably need to know whether the stats match the hype.",
-        "You may want comparison players or team-fit analysis next.",
-        "Risk matters as much as upside."
-      ],
-      points:[
-        "Separate evidence from promotion.",
-        "Identify measurable performance signals.",
-        "Consider team fit and development risk."
-      ],
-      actions:[
-        "Build scout brief.",
-        "Compare prospects.",
-        "Save to board."
-      ]
-    },
-    Lens:{
-      summary:"Tandee is reading this as investigative or analytical material.",
-      pills:["Timeline","People","Evidence","Anomalies"],
-      anticipates:[
-        "You probably need a timeline before conclusions.",
-        "Names, dates, and contradictions matter more than general summary.",
-        "The strongest next step may be isolating one anomaly."
-      ],
-      points:[
-        "Separate fact from speculation.",
-        "Track names, places, dates, and claims.",
-        "Identify what does not fit."
-      ],
-      actions:[
-        "Build timeline.",
-        "List anomalies.",
-        "Create deep-dive angle."
-      ]
-    },
-    Learn:{
-      summary:"Tandee is reading this as a learning session.",
-      pills:["Explain","Quiz","Simplify","Practice"],
-      anticipates:[
-        "You may need the idea explained at a simpler level first.",
-        "You may want a quiz to check whether you understood it.",
-        "The next useful step is probably examples, not more text."
-      ],
-      points:[
-        "Identify the main concept.",
-        "Break it into plain language.",
-        "Turn understanding into practice."
-      ],
-      actions:[
-        "Explain simply.",
-        "Create quiz.",
-        "Make study notes."
-      ]
-    }
-  };
-  return all[mode];
+  document.getElementById("summary").innerHTML='<div class="loading">Tandee is thinking through the situation...</div>';
+
+  const prompt = `
+You are Tandee.
+
+Your job is to anticipate what humans probably need next.
+
+Mode: ${currentMode}
+
+Situation:
+${context}
+
+Notes:
+${notes}
+
+Return ONLY valid JSON in this format:
+
+{
+  "summary":"short situation summary",
+  "pills":["pill","pill","pill","pill"],
+  "anticipates":[
+    "anticipation 1",
+    "anticipation 2",
+    "anticipation 3",
+    "anticipation 4"
+  ],
+  "points":[
+    "important point 1",
+    "important point 2",
+    "important point 3"
+  ],
+  "actions":[
+    "next action 1",
+    "next action 2",
+    "next action 3"
+  ]
+}
+`;
+
+  try {
+
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4.1-mini",
+        messages: [
+          {
+            role: "user",
+            content: prompt
+          }
+        ],
+        temperature: 0.8
+      })
+    });
+
+    const data = await response.json();
+
+    const text = data.choices[0].message.content;
+
+    const parsed = JSON.parse(text);
+
+    currentWorkspace={
+      summary:parsed.summary,
+      pills:parsed.pills || [],
+      anticipates:parsed.anticipates || [],
+      points:parsed.points || [],
+      actions:parsed.actions || []
+    };
+
+    renderWorkspace();
+
+  } catch(error) {
+
+    document.getElementById("summary").innerText="Tandee could not generate a response.";
+
+    document.getElementById("anticipates").innerHTML=`
+      <div class="anticipate">
+        <strong>Error:</strong><br>
+        ${error.message}
+      </div>
+    `;
+  }
 }
 
 function renderWorkspace(){
-  if(!currentWorkspace)return;
 
-  document.getElementById("summary").innerText=
-    currentWorkspace.summary+"\n\nContext: "+currentWorkspace.context;
+  document.getElementById("summary").innerText=currentWorkspace.summary;
 
   document.getElementById("pills").innerHTML=
     currentWorkspace.pills.map(p=>`<div class="pill">${p}</div>`).join("");
 
   document.getElementById("anticipates").innerHTML=
     currentWorkspace.anticipates.map(a=>`
-      <div class="anticipate"><strong>Anticipation:</strong><br>${a}</div>
+      <div class="anticipate">
+        <strong>Tandee anticipates:</strong><br>
+        ${a}
+      </div>
     `).join("");
 
   document.getElementById("keyPoints").innerHTML=
@@ -296,60 +242,6 @@ function renderWorkspace(){
 
   document.getElementById("actions").innerHTML=
     currentWorkspace.actions.map(a=>`<div class="item">${a}</div>`).join("");
-}
-
-function askTandee(){
-  const q=document.getElementById("askInput").value.trim();
-
-  if(!currentWorkspace){
-    document.getElementById("answer").innerText="Start a Tandee session first.";
-    return;
-  }
-
-  if(!q){
-    document.getElementById("answer").innerText="Ask what you should consider next.";
-    return;
-  }
-
-  document.getElementById("answer").innerText=
-    "Prototype response: Based on this "+currentWorkspace.mode+" session, Tandee would answer by considering your goal, likely friction points, and what you probably need next. Question: "+q;
-}
-
-function saveWorkspace(){
-  if(!currentWorkspace)return;
-  let saved=JSON.parse(localStorage.getItem("tandee_saved")||"[]");
-  saved.unshift(currentWorkspace);
-  localStorage.setItem("tandee_saved",JSON.stringify(saved));
-  document.getElementById("savedMsg").style.display="block";
-}
-
-function renderSaved(){
-  let saved=JSON.parse(localStorage.getItem("tandee_saved")||"[]");
-
-  if(!saved.length){
-    document.getElementById("savedList").innerHTML='<div class="empty">No saved sessions yet.</div>';
-    return;
-  }
-
-  document.getElementById("savedList").innerHTML=saved.map((w,i)=>`
-    <div class="item" onclick="loadSaved(${i})">
-      <strong>${w.mode} Session</strong><br>
-      ${w.context}<br>
-      <span class="small">${w.created}</span>
-    </div>
-  `).join("");
-}
-
-function loadSaved(i){
-  let saved=JSON.parse(localStorage.getItem("tandee_saved")||"[]");
-  currentWorkspace=saved[i];
-  renderWorkspace();
-  document.querySelectorAll(".navbtn")[1].click();
-}
-
-function clearSaved(){
-  localStorage.removeItem("tandee_saved");
-  renderSaved();
 }
 </script>
 

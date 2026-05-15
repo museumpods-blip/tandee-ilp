@@ -3,198 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tandee Layer</title>
+<title>Tandee</title>
 
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#030711;
-  color:white;
-}
-.app{
-  max-width:500px;
-  margin:0 auto;
-  min-height:100vh;
-  padding:16px 16px 90px;
-  background:linear-gradient(180deg,#0b1d34,#030711);
-}
+body{margin:0;font-family:Arial,sans-serif;background:#030711;color:white}
+.app{max-width:500px;margin:0 auto;min-height:100vh;padding:16px 16px 90px;background:linear-gradient(180deg,#0b1d34,#030711)}
 .header{text-align:center;padding:14px 0}
-.logo{font-size:30px;font-weight:800;color:#f6c04d}
+.logo{font-size:34px;font-weight:900;color:#f6c04d}
 .tagline{font-size:14px;color:#b9c6d6;margin-top:6px}
-.card{
-  background:rgba(255,255,255,.075);
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:22px;
-  padding:16px;
-  margin-bottom:14px;
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
-}
+.card{background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.13);border-radius:22px;padding:16px;margin-bottom:14px;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.hero{font-size:22px;font-weight:800;line-height:1.2;margin-bottom:8px}
+.sub{color:#b9c6d6;font-size:14px;line-height:1.45}
 label{font-size:13px;color:#cfd8e3;display:block;margin-bottom:8px}
-input,textarea{
-  width:100%;
-  border:0;
-  border-radius:15px;
-  padding:14px;
-  font-size:15px;
-  outline:none;
-}
+input,textarea{width:100%;border:0;border-radius:15px;padding:14px;font-size:15px;outline:none}
 textarea{min-height:115px;resize:vertical}
 .modes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-.mode{
-  border:1px solid rgba(255,255,255,.16);
-  background:rgba(255,255,255,.09);
-  color:white;
-  padding:13px;
-  border-radius:15px;
-  text-align:center;
-  cursor:pointer;
-}
+.mode{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.09);color:white;padding:13px;border-radius:15px;text-align:center;cursor:pointer}
 .mode.active{background:#f6c04d;color:#07111f;font-weight:bold}
-button{
-  width:100%;
-  border:0;
-  border-radius:16px;
-  padding:15px;
-  margin-top:14px;
-  background:#f6c04d;
-  color:#07111f;
-  font-weight:bold;
-  font-size:16px;
-  cursor:pointer;
-}
+button{width:100%;border:0;border-radius:16px;padding:15px;margin-top:14px;background:#f6c04d;color:#07111f;font-weight:bold;font-size:16px;cursor:pointer}
 .secondary{background:rgba(255,255,255,.12);color:white}
 .section-title{color:#f6c04d;font-weight:bold;font-size:17px;margin-bottom:8px}
-.item{
-  padding:10px 0;
-  border-bottom:1px solid rgba(255,255,255,.1);
-  line-height:1.45;
-  font-size:14px;
-}
+.item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);line-height:1.45;font-size:14px}
 .item:last-child{border-bottom:0}
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.pill{
-  background:rgba(246,192,77,.16);
-  border:1px solid rgba(246,192,77,.35);
-  color:#f7d88a;
-  padding:8px 10px;
-  border-radius:999px;
-  font-size:13px;
-}
+.pill{background:rgba(246,192,77,.16);border:1px solid rgba(246,192,77,.35);color:#f7d88a;padding:8px 10px;border-radius:999px;font-size:13px}
 .view{display:none}
 .view.active{display:block}
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  max-width:500px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  background:#06101d;
-  border-top:1px solid rgba(255,255,255,.14);
-}
-.navbtn{
-  padding:12px 4px;
-  text-align:center;
-  font-size:12px;
-  color:#9eb0c5;
-  cursor:pointer;
-}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;max-width:500px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);background:#06101d;border-top:1px solid rgba(255,255,255,.14)}
+.navbtn{padding:12px 4px;text-align:center;font-size:12px;color:#9eb0c5;cursor:pointer}
 .navbtn.active{color:#f6c04d;font-weight:bold}
 .saved-msg{display:none;color:#9ee6b0;font-size:13px;margin-top:10px}
 .empty{color:#9eb0c5;font-size:14px;padding:12px 0}
-.hero{
-  font-size:22px;
-  font-weight:800;
-  line-height:1.2;
-  margin-bottom:8px;
-}
-.sub{color:#b9c6d6;font-size:14px;line-height:1.45}
+.anticipate{background:rgba(246,192,77,.09);border:1px solid rgba(246,192,77,.25);border-radius:16px;padding:12px;margin:10px 0}
+.anticipate strong{color:#f6c04d}
+.small{font-size:12px;color:#9eb0c5}
 </style>
 </head>
 
 <body>
 <div class="app">
 
-  <div class="header">
-    <div class="logo">Tandee Layer</div>
-    <div class="tagline">Mobile interaction reorganized around intent</div>
-  </div>
+<div class="header">
+  <div class="logo">Tandee</div>
+  <div class="tagline">AI-centered mobile interaction</div>
+</div>
 
-  <div id="homeView" class="view active">
-    <div class="card">
-      <div class="hero">Open the web. Tandee builds the layer.</div>
-      <div class="sub">
-        Paste a link, describe a page, or later share directly from your phone.
-        Tandee turns passive browsing into an active mobile workspace.
-      </div>
-    </div>
-
-    <div class="card">
-      <label>URL or page context</label>
-      <input id="urlInput" placeholder="Paste URL or describe the page">
-
-      <br><br>
-
-      <label>Optional notes or copied content</label>
-      <textarea id="contentInput" placeholder="Paste text or describe what you are looking at"></textarea>
-
-      <div class="modes">
-        <div class="mode active" onclick="setMode('General',this)">General</div>
-        <div class="mode" onclick="setMode('Scout',this)">Scout</div>
-        <div class="mode" onclick="setMode('Lens',this)">Lens</div>
-        <div class="mode" onclick="setMode('Local',this)">Local</div>
-      </div>
-
-      <button onclick="generateLayer()">Generate Layer</button>
+<div id="homeView" class="view active">
+  <div class="card">
+    <div class="hero">Tandee learns the situation, then anticipates the next need.</div>
+    <div class="sub">
+      Not cookies. Not ad stalking. Tandee watches the task pattern:
+      what you are trying to do, what might block you, and what you probably need next.
     </div>
   </div>
 
-  <div id="workspaceView" class="view">
-    <div class="card">
-      <div class="section-title">Context Snapshot</div>
-      <div id="summary" class="item">No workspace yet.</div>
-      <div id="pills" class="pills"></div>
+  <div class="card">
+    <label>What are you doing?</label>
+    <input id="urlInput" placeholder="Example: flying from a small airport, watching a case video, studying a topic">
+
+    <br><br>
+
+    <label>Context / notes</label>
+    <textarea id="contentInput" placeholder="Example: leaving from rural PA, early flight, need parking, shuttle, Uber options..."></textarea>
+
+    <div class="modes">
+      <div class="mode active" onclick="setMode('General',this)">General</div>
+      <div class="mode" onclick="setMode('Scout',this)">Scout</div>
+      <div class="mode" onclick="setMode('Lens',this)">Lens</div>
+      <div class="mode" onclick="setMode('Learn',this)">Learn</div>
     </div>
 
-    <div class="card">
-      <div class="section-title">What Matters</div>
-      <div id="keyPoints"></div>
-    </div>
+    <button onclick="generateLayer()">Start Tandee</button>
+  </div>
+</div>
 
-    <div class="card">
-      <div class="section-title">Suggested Actions</div>
-      <div id="actions"></div>
-      <button class="secondary" onclick="saveWorkspace()">Save Workspace</button>
-      <div id="savedMsg" class="saved-msg">Workspace saved.</div>
-    </div>
+<div id="workspaceView" class="view">
+  <div class="card">
+    <div class="section-title">Situation Snapshot</div>
+    <div id="summary" class="item">No active Tandee session yet.</div>
+    <div id="pills" class="pills"></div>
   </div>
 
-  <div id="askView" class="view">
-    <div class="card">
-      <div class="section-title">Ask Tandee</div>
-      <input id="askInput" placeholder="Ask about this workspace">
-      <button onclick="askTandee()">Ask</button>
-      <div id="answer" class="item" style="margin-top:12px;">Ask a question after generating a layer.</div>
-    </div>
+  <div class="card">
+    <div class="section-title">Tandee Anticipates</div>
+    <div id="anticipates"></div>
   </div>
 
-  <div id="savedView" class="view">
-    <div class="card">
-      <div class="section-title">Saved Workspaces</div>
-      <div id="savedList" class="empty">No saved workspaces yet.</div>
-      <button class="secondary" onclick="clearSaved()">Clear Saved</button>
-    </div>
+  <div class="card">
+    <div class="section-title">What Matters</div>
+    <div id="keyPoints"></div>
   </div>
+
+  <div class="card">
+    <div class="section-title">Suggested Next Moves</div>
+    <div id="actions"></div>
+    <button class="secondary" onclick="saveWorkspace()">Save Session</button>
+    <div id="savedMsg" class="saved-msg">Session saved.</div>
+  </div>
+</div>
+
+<div id="askView" class="view">
+  <div class="card">
+    <div class="section-title">Ask Tandee</div>
+    <input id="askInput" placeholder="Ask what you should consider next">
+    <button onclick="askTandee()">Ask</button>
+    <div id="answer" class="item" style="margin-top:12px;">Start a session first.</div>
+  </div>
+</div>
+
+<div id="savedView" class="view">
+  <div class="card">
+    <div class="section-title">Saved Sessions</div>
+    <div id="savedList" class="empty">No saved sessions yet.</div>
+    <button class="secondary" onclick="clearSaved()">Clear Saved</button>
+  </div>
+</div>
 
 </div>
 
 <div class="bottom-nav">
   <div class="navbtn active" onclick="showView('homeView',this)">Home</div>
-  <div class="navbtn" onclick="showView('workspaceView',this)">Layer</div>
+  <div class="navbtn" onclick="showView('workspaceView',this)">Tandee</div>
   <div class="navbtn" onclick="showView('askView',this)">Ask</div>
   <div class="navbtn" onclick="showView('savedView',this)">Saved</div>
 </div>
@@ -218,82 +148,46 @@ function setMode(mode,el){
 }
 
 function generateLayer(){
-  const url=document.getElementById("urlInput").value.trim();
-  const content=document.getElementById("contentInput").value.trim();
-  const source=url||content||"Untitled mobile context";
+  const context=document.getElementById("urlInput").value.trim() || "Untitled task";
+  const notes=document.getElementById("contentInput").value.trim();
 
-  let data={
-    General:{
-      summary:"Tandee is reading this as a general web context and converting it into an action layer.",
-      pills:["Intent","Summary","Actions","Notes","Next step"],
-      points:[
-        "Identify what the page is mainly about.",
-        "Determine what the user is probably trying to do next.",
-        "Turn passive browsing into an active mobile workspace."
-      ],
-      actions:[
-        "Summarize the page.",
-        "Extract important details.",
-        "Create useful notes.",
-        "Recommend the next action."
-      ]
-    },
-    Scout:{
-      summary:"Tandee is treating this as a sports intelligence context.",
-      pills:["Player","Stats","Fit","Risk","Board"],
-      points:[
-        "Identify athlete, position, school, class year, and available stats.",
-        "Separate evidence from hype.",
-        "Look for upside, readiness, hidden value, and development risk."
-      ],
-      actions:[
-        "Build a scout brief.",
-        "Save to My Scout Board.",
-        "Compare against another prospect.",
-        "Generate a recruiting article."
-      ]
-    },
-    Lens:{
-      summary:"Tandee is treating this as investigative media or case material.",
-      pills:["Timeline","People","Evidence","Anomalies","Questions"],
-      points:[
-        "Identify names, places, dates, and claims.",
-        "Separate facts from speculation.",
-        "Find contradictions, missing pieces, and key anomalies."
-      ],
-      actions:[
-        "Build a timeline.",
-        "List anomalies.",
-        "Create a deep-dive angle.",
-        "Save to an investigation thread."
-      ]
-    },
-    Local:{
-      summary:"Tandee is treating this as local discovery or a mobile decision moment.",
-      pills:["Nearby","Hours","Directions","Offer","Share"],
-      points:[
-        "Identify business, place, event, or offer.",
-        "Extract location, hours, contact info, and next step.",
-        "Convert the page into a simple mobile action flow."
-      ],
-      actions:[
-        "Create a visitor card.",
-        "Open directions.",
-        "Draft a local promo.",
-        "Generate QR-friendly copy."
-      ]
-    }
-  };
+  let lower=(context+" "+notes).toLowerCase();
 
-  const d=data[currentMode];
+  let data=getModeData(currentMode);
+
+  if(lower.includes("airport") || lower.includes("flight") || lower.includes("uber") || lower.includes("shuttle") || lower.includes("parking")){
+    data={
+      summary:"Tandee recognizes this as a travel logistics situation, not just a search. The key issue is reliability under real-world conditions.",
+      pills:["Parking","Shuttle","Uber risk","Timing","Stress reduction"],
+      anticipates:[
+        "You probably need to know whether airport parking includes a shuttle or requires walking.",
+        "If this is rural America or an early/late flight, Uber may be unreliable or expensive.",
+        "A hotel park-and-fly option may reduce stress if the flight is very early.",
+        "You need a backup plan before you leave, not after you land."
+      ],
+      points:[
+        "Departure time matters because rural rideshare availability can collapse early morning or late night.",
+        "Parking may be more reliable than rideshare if the airport is small or far from a city.",
+        "The best answer depends on trip length, flight time, airport size, weather, and return time."
+      ],
+      actions:[
+        "Check official airport parking and shuttle details.",
+        "Compare long-term parking vs hotel park-and-fly.",
+        "Estimate Uber availability before relying on it.",
+        "Create a departure plan with backup timing."
+      ]
+    };
+  }
 
   currentWorkspace={
     mode:currentMode,
-    source,
-    summary:d.summary,
-    pills:d.pills,
-    points:d.points,
-    actions:d.actions,
+    context,
+    notes,
+    summary:data.summary,
+    pills:data.pills,
+    anticipates:data.anticipates,
+    points:data.points,
+    actions:data.actions,
     created:new Date().toLocaleString()
   };
 
@@ -301,26 +195,124 @@ function generateLayer(){
   document.querySelectorAll(".navbtn")[1].click();
 }
 
+function getModeData(mode){
+  const all={
+    General:{
+      summary:"Tandee is reading this as a general human task and building an intent-centered session.",
+      pills:["Intent","Friction","Context","Next need"],
+      anticipates:[
+        "You may need the next practical step, not just information.",
+        "There may be hidden constraints around time, money, distance, or reliability.",
+        "The useful answer may depend on what happens after this step."
+      ],
+      points:[
+        "Identify what the human is trying to accomplish.",
+        "Notice what could create friction.",
+        "Convert the situation into practical next moves."
+      ],
+      actions:[
+        "Clarify the goal.",
+        "Identify constraints.",
+        "Suggest the next useful action."
+      ]
+    },
+    Scout:{
+      summary:"Tandee is reading this as a sports intelligence session.",
+      pills:["Player","Fit","Risk","Upside"],
+      anticipates:[
+        "You probably need to know whether the stats match the hype.",
+        "You may want comparison players or team-fit analysis next.",
+        "Risk matters as much as upside."
+      ],
+      points:[
+        "Separate evidence from promotion.",
+        "Identify measurable performance signals.",
+        "Consider team fit and development risk."
+      ],
+      actions:[
+        "Build scout brief.",
+        "Compare prospects.",
+        "Save to board."
+      ]
+    },
+    Lens:{
+      summary:"Tandee is reading this as investigative or analytical material.",
+      pills:["Timeline","People","Evidence","Anomalies"],
+      anticipates:[
+        "You probably need a timeline before conclusions.",
+        "Names, dates, and contradictions matter more than general summary.",
+        "The strongest next step may be isolating one anomaly."
+      ],
+      points:[
+        "Separate fact from speculation.",
+        "Track names, places, dates, and claims.",
+        "Identify what does not fit."
+      ],
+      actions:[
+        "Build timeline.",
+        "List anomalies.",
+        "Create deep-dive angle."
+      ]
+    },
+    Learn:{
+      summary:"Tandee is reading this as a learning session.",
+      pills:["Explain","Quiz","Simplify","Practice"],
+      anticipates:[
+        "You may need the idea explained at a simpler level first.",
+        "You may want a quiz to check whether you understood it.",
+        "The next useful step is probably examples, not more text."
+      ],
+      points:[
+        "Identify the main concept.",
+        "Break it into plain language.",
+        "Turn understanding into practice."
+      ],
+      actions:[
+        "Explain simply.",
+        "Create quiz.",
+        "Make study notes."
+      ]
+    }
+  };
+  return all[mode];
+}
+
 function renderWorkspace(){
   if(!currentWorkspace)return;
-  document.getElementById("summary").innerText=currentWorkspace.summary+"\n\nSource: "+currentWorkspace.source;
-  document.getElementById("pills").innerHTML=currentWorkspace.pills.map(p=>`<div class="pill">${p}</div>`).join("");
-  document.getElementById("keyPoints").innerHTML=currentWorkspace.points.map(p=>`<div class="item">${p}</div>`).join("");
-  document.getElementById("actions").innerHTML=currentWorkspace.actions.map(a=>`<div class="item">${a}</div>`).join("");
+
+  document.getElementById("summary").innerText=
+    currentWorkspace.summary+"\n\nContext: "+currentWorkspace.context;
+
+  document.getElementById("pills").innerHTML=
+    currentWorkspace.pills.map(p=>`<div class="pill">${p}</div>`).join("");
+
+  document.getElementById("anticipates").innerHTML=
+    currentWorkspace.anticipates.map(a=>`
+      <div class="anticipate"><strong>Anticipation:</strong><br>${a}</div>
+    `).join("");
+
+  document.getElementById("keyPoints").innerHTML=
+    currentWorkspace.points.map(p=>`<div class="item">${p}</div>`).join("");
+
+  document.getElementById("actions").innerHTML=
+    currentWorkspace.actions.map(a=>`<div class="item">${a}</div>`).join("");
 }
 
 function askTandee(){
   const q=document.getElementById("askInput").value.trim();
+
   if(!currentWorkspace){
-    document.getElementById("answer").innerText="Generate a layer first.";
+    document.getElementById("answer").innerText="Start a Tandee session first.";
     return;
   }
+
   if(!q){
-    document.getElementById("answer").innerText="Ask what you want to do with this context.";
+    document.getElementById("answer").innerText="Ask what you should consider next.";
     return;
   }
+
   document.getElementById("answer").innerText=
-    "Prototype response: In "+currentWorkspace.mode+" mode, Tandee would answer using the current source, saved session, and your intent. Question: "+q;
+    "Prototype response: Based on this "+currentWorkspace.mode+" session, Tandee would answer by considering your goal, likely friction points, and what you probably need next. Question: "+q;
 }
 
 function saveWorkspace(){
@@ -333,15 +325,17 @@ function saveWorkspace(){
 
 function renderSaved(){
   let saved=JSON.parse(localStorage.getItem("tandee_saved")||"[]");
+
   if(!saved.length){
-    document.getElementById("savedList").innerHTML='<div class="empty">No saved workspaces yet.</div>';
+    document.getElementById("savedList").innerHTML='<div class="empty">No saved sessions yet.</div>';
     return;
   }
+
   document.getElementById("savedList").innerHTML=saved.map((w,i)=>`
     <div class="item" onclick="loadSaved(${i})">
-      <strong>${w.mode} Layer</strong><br>
-      ${w.source}<br>
-      <span style="color:#9eb0c5">${w.created}</span>
+      <strong>${w.mode} Session</strong><br>
+      ${w.context}<br>
+      <span class="small">${w.created}</span>
     </div>
   `).join("");
 }
@@ -357,16 +351,6 @@ function clearSaved(){
   localStorage.removeItem("tandee_saved");
   renderSaved();
 }
-
-function checkIncomingUrl(){
-  const params=new URLSearchParams(window.location.search);
-  const shared=params.get("url")||params.get("text")||params.get("share");
-  if(shared){
-    document.getElementById("urlInput").value=shared;
-  }
-}
-
-checkIncomingUrl();
 </script>
 
 </body>

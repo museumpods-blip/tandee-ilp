@@ -7,65 +7,193 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#030711;color:white}
-.app{max-width:500px;margin:0 auto;min-height:100vh;padding:16px 16px 90px;background:linear-gradient(180deg,#0b1d34,#030711)}
-.header{text-align:center;padding:14px 0}
-.logo{font-size:34px;font-weight:900;color:#f6c04d}
-.tagline{font-size:14px;color:#b9c6d6;margin-top:6px}
-.card{background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.13);border-radius:22px;padding:16px;margin-bottom:14px;box-shadow:0 12px 30px rgba(0,0,0,.25)}
-.hero{font-size:22px;font-weight:800;line-height:1.2;margin-bottom:8px}
-.sub{color:#b9c6d6;font-size:14px;line-height:1.45}
-label{font-size:13px;color:#cfd8e3;display:block;margin-bottom:8px}
-input,textarea{width:100%;border:0;border-radius:15px;padding:14px;font-size:15px;outline:none}
-textarea{min-height:115px;resize:vertical}
-.modes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-.mode{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.09);color:white;padding:13px;border-radius:15px;text-align:center;cursor:pointer}
-.mode.active{background:#f6c04d;color:#07111f;font-weight:bold}
-button{width:100%;border:0;border-radius:16px;padding:15px;margin-top:14px;background:#f6c04d;color:#07111f;font-weight:bold;font-size:16px;cursor:pointer}
-.secondary{background:rgba(255,255,255,.12);color:white}
-.section-title{color:#f6c04d;font-weight:bold;font-size:17px;margin-bottom:8px}
-.item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);line-height:1.45;font-size:14px}
-.item:last-child{border-bottom:0}
-.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.pill{background:rgba(246,192,77,.16);border:1px solid rgba(246,192,77,.35);color:#f7d88a;padding:8px 10px;border-radius:999px;font-size:13px}
-.view{display:none}
-.view.active{display:block}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;max-width:500px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);background:#06101d;border-top:1px solid rgba(255,255,255,.14)}
-.navbtn{padding:12px 4px;text-align:center;font-size:12px;color:#9eb0c5;cursor:pointer}
-.navbtn.active{color:#f6c04d;font-weight:bold}
-.saved-msg{display:none;color:#9ee6b0;font-size:13px;margin-top:10px}
-.empty{color:#9eb0c5;font-size:14px;padding:12px 0}
-.anticipate{background:rgba(246,192,77,.09);border:1px solid rgba(246,192,77,.25);border-radius:16px;padding:12px;margin:10px 0}
-.anticipate strong{color:#f6c04d}
-.small{font-size:12px;color:#9eb0c5}
-.loading{color:#f6c04d;font-size:14px;padding:10px 0}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#030711;
+  color:white;
+}
+
+.app{
+  max-width:500px;
+  margin:0 auto;
+  min-height:100vh;
+  padding:16px 16px 90px;
+  background:linear-gradient(180deg,#0b1d34,#030711);
+}
+
+.header{
+  text-align:center;
+  padding:14px 0;
+}
+
+.logo{
+  font-size:34px;
+  font-weight:900;
+  color:#f6c04d;
+}
+
+.tagline{
+  font-size:14px;
+  color:#b9c6d6;
+  margin-top:6px;
+}
+
+.card{
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:22px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+
+.hero{
+  font-size:22px;
+  font-weight:800;
+  line-height:1.2;
+  margin-bottom:8px;
+}
+
+.sub{
+  color:#b9c6d6;
+  font-size:14px;
+  line-height:1.45;
+}
+
+label{
+  font-size:13px;
+  color:#cfd8e3;
+  display:block;
+  margin-bottom:8px;
+}
+
+input,textarea{
+  width:100%;
+  border:0;
+  border-radius:15px;
+  padding:14px;
+  font-size:15px;
+  outline:none;
+}
+
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.modes{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:12px;
+}
+
+.mode{
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.09);
+  color:white;
+  padding:13px;
+  border-radius:15px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.mode.active{
+  background:#f6c04d;
+  color:#07111f;
+  font-weight:bold;
+}
+
+button{
+  width:100%;
+  border:0;
+  border-radius:16px;
+  padding:15px;
+  margin-top:14px;
+  background:#f6c04d;
+  color:#07111f;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.section-title{
+  color:#f6c04d;
+  font-weight:bold;
+  font-size:17px;
+  margin-bottom:8px;
+}
+
+.pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+
+.pill{
+  background:rgba(246,192,77,.16);
+  border:1px solid rgba(246,192,77,.35);
+  color:#f7d88a;
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:13px;
+}
+
+.anticipate{
+  background:rgba(246,192,77,.09);
+  border:1px solid rgba(246,192,77,.25);
+  border-radius:16px;
+  padding:12px;
+  margin:10px 0;
+  line-height:1.45;
+  font-size:14px;
+}
+
+.item{
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  line-height:1.45;
+  font-size:14px;
+}
+
+.item:last-child{
+  border-bottom:0;
+}
+
+.loading{
+  color:#f6c04d;
+  font-size:14px;
+  padding:10px 0;
+}
+
+.error{
+  color:#ffb4b4;
+  font-size:14px;
+  line-height:1.45;
+}
 </style>
 </head>
 
 <body>
 <div class="app">
 
-<div class="header">
-  <div class="logo">Tandee</div>
-  <div class="tagline">AI-centered mobile interaction</div>
-</div>
+  <div class="header">
+    <div class="logo">Tandee</div>
+    <div class="tagline">AI-centered mobile interaction</div>
+  </div>
 
-<div id="homeView" class="view active">
   <div class="card">
     <div class="hero">Tandee anticipates what humans probably need next.</div>
     <div class="sub">
-      Tandee focuses on situations, friction, timing, stress, logistics, and next moves — not just keywords.
+      Tandee focuses on situations, timing, friction, logistics, and next moves.
     </div>
   </div>
 
   <div class="card">
-    <label>What are you doing?</label>
-    <input id="urlInput" placeholder="Example: flying from rural PA for a 6am flight">
-
-    <br><br>
-
-    <label>Context / notes</label>
-    <textarea id="contentInput" placeholder="Example: need parking, shuttle, worried about Uber availability..."></textarea>
+    <label>Choose Tandee layer</label>
 
     <div class="modes">
       <div class="mode active" onclick="setMode('General',this)">General</div>
@@ -74,14 +202,22 @@ button{width:100%;border:0;border-radius:16px;padding:15px;margin-top:14px;backg
       <div class="mode" onclick="setMode('Learn',this)">Learn</div>
     </div>
 
-    <button onclick="generateLayer()">Start Tandee</button>
-  </div>
-</div>
+    <br>
 
-<div id="workspaceView" class="view">
+    <label>What are you doing?</label>
+    <input id="context" placeholder="Example: Flying from rural PA for a 6am flight">
+
+    <br><br>
+
+    <label>Extra notes</label>
+    <textarea id="notes" placeholder="Example: Need parking, worried Uber may not exist, traveling with parents..."></textarea>
+
+    <button onclick="runTandee()">Start Tandee</button>
+  </div>
+
   <div class="card">
-    <div class="section-title">Situation Snapshot</div>
-    <div id="summary" class="item">No active Tandee session yet.</div>
+    <div class="section-title">Situation</div>
+    <div id="summary">No active session.</div>
     <div id="pills" class="pills"></div>
   </div>
 
@@ -92,64 +228,68 @@ button{width:100%;border:0;border-radius:16px;padding:15px;margin-top:14px;backg
 
   <div class="card">
     <div class="section-title">What Matters</div>
-    <div id="keyPoints"></div>
+    <div id="points"></div>
   </div>
 
   <div class="card">
     <div class="section-title">Suggested Next Moves</div>
     <div id="actions"></div>
   </div>
-</div>
 
-</div>
-
-<div class="bottom-nav">
-  <div class="navbtn active" onclick="showView('homeView',this)">Home</div>
-  <div class="navbtn" onclick="showView('workspaceView',this)">Tandee</div>
 </div>
 
 <script>
-const OPENAI_API_KEY = "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";
+const TANDEE_FUNCTION_URL = "https://pdhxtpgtzxjkgwabgybb.supabase.co/functions/v1/tandee-ai";
 
-let currentMode="General";
-let currentWorkspace=null;
+let currentMode = "General";
 
-function showView(id,el){
-  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  document.querySelectorAll(".navbtn").forEach(n=>n.classList.remove("active"));
-  el.classList.add("active");
+function setMode(mode, element){
+  currentMode = mode;
+  document.querySelectorAll(".mode").forEach(m => m.classList.remove("active"));
+  element.classList.add("active");
 }
 
-function setMode(mode,el){
-  currentMode=mode;
-  document.querySelectorAll(".mode").forEach(m=>m.classList.remove("active"));
-  el.classList.add("active");
-}
+async function runTandee(){
 
-async function generateLayer(){
+  const context = document.getElementById("context").value.trim();
+  const notes = document.getElementById("notes").value.trim();
 
-  const context=document.getElementById("urlInput").value.trim() || "Untitled situation";
-  const notes=document.getElementById("contentInput").value.trim();
-
-  document.querySelectorAll(".navbtn")[1].click();
-
-  document.getElementById("summary").innerHTML='<div class="loading">Tandee is thinking through the situation...</div>';
+  document.getElementById("summary").innerHTML = '<div class="loading">Tandee is thinking through the situation...</div>';
+  document.getElementById("pills").innerHTML = "";
+  document.getElementById("anticipates").innerHTML = "";
+  document.getElementById("points").innerHTML = "";
+  document.getElementById("actions").innerHTML = "";
 
   const prompt = `
 You are Tandee.
 
-Your job is to anticipate what humans probably need next.
+You are an AI-centered mobile interaction assistant.
 
-Mode: ${currentMode}
+Your job is NOT to give generic summaries.
+Your job is to anticipate what a human probably needs next.
+
+Think about:
+- the user's actual situation
+- timing
+- stress
+- logistics
+- hidden friction
+- rural vs urban realities
+- cost
+- reliability
+- safety
+- practical next steps
+- what the user may not know to ask yet
+
+Current Tandee layer: ${currentMode}
 
 Situation:
 ${context}
 
-Notes:
+Extra notes:
 ${notes}
 
-Return ONLY valid JSON in this format:
+Return ONLY valid JSON in this exact format:
 
 {
   "summary":"short situation summary",
@@ -166,82 +306,79 @@ Return ONLY valid JSON in this format:
     "important point 3"
   ],
   "actions":[
-    "next action 1",
-    "next action 2",
-    "next action 3"
+    "action 1",
+    "action 2",
+    "action 3"
   ]
 }
 `;
 
   try {
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch(TANDEE_FUNCTION_URL, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${OPENAI_API_KEY}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "gpt-4.1-mini",
-        messages: [
-          {
-            role: "user",
-            content: prompt
-          }
-        ],
-        temperature: 0.8
+        prompt: prompt
       })
     });
 
     const data = await response.json();
 
-    const text = data.choices[0].message.content;
+    console.log("Supabase function response:", data);
 
-    const parsed = JSON.parse(text);
+    if (data.error) {
+      throw new Error(data.error);
+    }
 
-    currentWorkspace={
-      summary:parsed.summary,
-      pills:parsed.pills || [],
-      anticipates:parsed.anticipates || [],
-      points:parsed.points || [],
-      actions:parsed.actions || []
-    };
+    const message = data.choices?.[0]?.message?.content;
 
-    renderWorkspace();
+    if (!message) {
+      throw new Error("No AI message returned. Check Supabase function and OpenAI secret.");
+    }
+
+    const cleaned = message
+      .replace(/```json/g, "")
+      .replace(/```/g, "")
+      .trim();
+
+    const parsed = JSON.parse(cleaned);
+
+    document.getElementById("summary").innerText = parsed.summary || "No summary returned.";
+
+    document.getElementById("pills").innerHTML =
+      (parsed.pills || []).map(p => `<div class="pill">${escapeHtml(p)}</div>`).join("");
+
+    document.getElementById("anticipates").innerHTML =
+      (parsed.anticipates || []).map(a => `
+        <div class="anticipate">${escapeHtml(a)}</div>
+      `).join("");
+
+    document.getElementById("points").innerHTML =
+      (parsed.points || []).map(p => `<div class="item">${escapeHtml(p)}</div>`).join("");
+
+    document.getElementById("actions").innerHTML =
+      (parsed.actions || []).map(a => `<div class="item">${escapeHtml(a)}</div>`).join("");
 
   } catch(error) {
 
-    document.getElementById("summary").innerText="Tandee could not generate a response.";
+    document.getElementById("summary").innerHTML =
+      `<div class="error">Tandee could not generate a response.<br><br>${escapeHtml(error.message)}</div>`;
 
-    document.getElementById("anticipates").innerHTML=`
-      <div class="anticipate">
-        <strong>Error:</strong><br>
-        ${error.message}
-      </div>
-    `;
+    document.getElementById("anticipates").innerHTML =
+      `<div class="anticipate">Check that your Supabase Edge Function is deployed and your OPENAI_API_KEY secret is saved.</div>`;
   }
 }
 
-function renderWorkspace(){
-
-  document.getElementById("summary").innerText=currentWorkspace.summary;
-
-  document.getElementById("pills").innerHTML=
-    currentWorkspace.pills.map(p=>`<div class="pill">${p}</div>`).join("");
-
-  document.getElementById("anticipates").innerHTML=
-    currentWorkspace.anticipates.map(a=>`
-      <div class="anticipate">
-        <strong>Tandee anticipates:</strong><br>
-        ${a}
-      </div>
-    `).join("");
-
-  document.getElementById("keyPoints").innerHTML=
-    currentWorkspace.points.map(p=>`<div class="item">${p}</div>`).join("");
-
-  document.getElementById("actions").innerHTML=
-    currentWorkspace.actions.map(a=>`<div class="item">${a}</div>`).join("");
+function escapeHtml(text){
+  return String(text)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 </script>
 
